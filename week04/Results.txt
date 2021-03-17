@@ -1,0 +1,34 @@
+Results for Tests on 5000 values
+
+Depth = depth of tree, Cost = average #comparisons per search
+
+
+             Ascending Order        Prefix Order        Random Order
+Insert
+Method       Depth      Cost     Depth    Cost     Depth     Cost
+
+L         ___5000__  ___3114__  __13__  ___12__   __28__    __16__
+
+A         ___5000__  ___1887__  _2954_  __1115__  __28__    __16__
+
+R         ___2492__  ___951__  __1774_  __674__   __27___   __15__
+
+B         ___206__   ___63___  __20__  ___14___  ___23___   __13__
+
+S         ___33___  ___24___  ___29___  __24__   __1149__   __23__
+
+V         ___13___  ___12__   ___14___  __12___  ___15___  ___12___
+
+
+Notes (what the above indicates):
+
+Ascending order w/ insertion at root/leaf produced the deepest trees. This would make sense, as these are essentially linked lists, and that loses us the benefit associated with trees in terms of complexity and cost of the algorithm.
+
+Insertion at leaf,root and randomly produced significantly worse results in terms of depth and cost in most cases. No balancing is performed in any of these three insertion methods, and as such explains the usually higher cost associated with comparisons in this tree.
+
+Balanced, splay and AVL trees tended to have smaller depths and consequently cost associated with it. These trees all have some form of balancing, and as such tended on average to require less comparisons per search.
+
+For the most part, depth was proportional to cost, except in the case of random order splay tree. For this, as there were many comparisons to build the tree, this greatly reduced our avg comparisons per search, and as such despite having such a large depth (likely due to an unlucky selection of a value closer to the max/min from the list for the last comparison) it has a good cost.
+
+Surprisingly, random order performed well across the board. However, AVL trees consistently performed the best. Across the board they produced a result of 12, which is equivalent to log base 2 5000. As AVL trees maintain the minimum height possible, they have O(logn) complexity, irrespective of insertion order.
+
